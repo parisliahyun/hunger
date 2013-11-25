@@ -14,3 +14,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/config/database.yml
+
+.bundle
+.DS_Store
+db/*.sqlite3
+log/*.log
+tmp/
