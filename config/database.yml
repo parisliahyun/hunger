@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: Hunger_development
+  database: hunger_development
   pool: 5
-  username: Hunger
+  username: Paris
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -46,15 +46,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: Hunger_test
+  database: hunger_test
   pool: 5
-  username: Hunger
+  username: Paris
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: Hunger_production
+  database: hunger_production
   pool: 5
-  username: Hunger
+  username: Paris
   password:
