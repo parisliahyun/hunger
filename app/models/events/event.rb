@@ -15,9 +15,22 @@ class Reaping < Event; end
     @tributes
   end
 
-  def select_tribute(name)
-    @tributes.push({name: name})
+  def select_female_tribute
+    eligible_people = []
+    @people.each do |person|
+      if person.age > 12  && person.gender == "f"
+        eligible_people << person
+        @tributes.push(eligible_people.sample)
+      end
   end
+
+  # def select_female_tribute(name)
+  #   @tributes.push({name: name})
+  # end
+
+  # def select_female_tribute(name)
+  #   @tributes.push({name: name})
+  # end
 
   def gamemakers
     @gamemakers

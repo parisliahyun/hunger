@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126171525) do
+ActiveRecord::Schema.define(version: 20131126184429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20131126171525) do
   end
 
   create_table "people", force: true do |t|
-    t.string   "type",       null: false
-    t.string   "name",       null: false
+    t.string   "type",        null: false
+    t.string   "name",        null: false
     t.integer  "district"
     t.boolean  "is_tribute"
     t.boolean  "is_victor"
@@ -42,7 +42,10 @@ ActiveRecord::Schema.define(version: 20131126171525) do
     t.datetime "updated_at"
     t.string   "gender"
     t.integer  "age"
+    t.integer  "district_id"
   end
+
+  add_index "people", ["district_id"], name: "index_people_on_district_id", using: :btree
 
   create_table "places", force: true do |t|
     t.string   "type",       null: false

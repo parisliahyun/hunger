@@ -3,14 +3,19 @@ require 'spec_helper'
 describe Event do
   let(:reaping) { Event.new(type: "Reaping", name: "reaping 1") }
 
-
-
-  describe "#select_tribute" do
+  describe "#select_female_tribute" do
     it "selects a tribute for the game" do
-      reaping.select_tribute("katniss everdeen")
+      reaping.select_female_tribute
       expect(reaping.tributes.count).to eq(1)
     end
   end
+
+  # describe "#select_male_tribute" do
+  #   it "selects a tribute for the game" do
+  #     reaping.select_tribute("katniss everdeen")
+  #     expect(reaping.tributes.count).to eq(1)
+  #   end
+  # end
 
   describe "#add_gamemaker" do
     it "add a gamemaker" do
