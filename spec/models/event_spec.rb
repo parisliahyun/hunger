@@ -1,30 +1,25 @@
 require 'spec_helper'
 
 describe Event do
-  let(:reaping) { Event.new(type: "Reaping") }
+  let(:reaping) { Event.new(type: "Reaping", name: "reaping1") }
 
-  describe "#select_female_tribute" do
+  describe "#find_by_gender" do
 
     let(:people) { [] }
     let(:district) { FactoryGirl.create(:district) }
     
     before do 
-      20.times { people << FactoryGirl.create(:person, district: district) }
+      context "Katniss is part of the reaping" do
+      reaping.add_citizens("Katniss Everdeen", "female")
+      24.times { people << FactoryGirl.create(:person, district: district) }
     end
 
-    it "selects a tribute for the game" do
-      reaping.select_female_tribute
-      expect(reaping.tributes.count).to eq(1)
-      binding.pry
+      it "selects a male or female tribute for the game" do
+        katniss = reaping.find_by_gender("female")
+        expect(katniss).to eq({name: "Katniss Everdeen", gender: "female"})
+      end
     end
   end
-
-  # describe "#select_male_tribute" do
-  #   it "selects a tribute for the game" do
-  #     reaping.select_tribute("katniss everdeen")
-  #     expect(reaping.tributes.count).to eq(1)
-  #   end
-  # end
 
   describe "#add_gamemaker" do
 

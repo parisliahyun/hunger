@@ -1,2 +1,0 @@
-class Reaping < Event
-end
