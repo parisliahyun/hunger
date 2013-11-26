@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Event do
   let(:reaping) { Event.new(type: "Reaping", name: "reaping 1") }
 
+
+
   describe "#select_tribute" do
     it "selects a tribute for the game" do
       reaping.select_tribute("katniss everdeen")
