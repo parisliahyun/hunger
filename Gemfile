@@ -34,10 +34,14 @@ end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'shoulda-matchers', '~> 2.4.0'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
+  gem 'pry-rails'
 end
 
 group :test do
-  gem "shoulda-matchers", "~> 2.4.0"
+  
 end
 
 
