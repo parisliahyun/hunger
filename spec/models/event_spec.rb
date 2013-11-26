@@ -5,7 +5,7 @@ describe Event do
 
   describe "#select_tribute" do
     it "selects a tribute for the game" do
-      reaping.select_tribute("katnis everdeen")
+      reaping.select_tribute("katniss everdeen")
       expect(reaping.tributes.count).to eq(1)
     end
   end

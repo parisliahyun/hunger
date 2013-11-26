@@ -36,6 +36,10 @@ group :test, :development do
   gem 'rspec-rails'
 end
 
+group :test do
+  gem "shoulda-matchers", "~> 2.4.0"
+end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
