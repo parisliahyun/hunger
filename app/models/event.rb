@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-class Reaping < Event; end
+class Reaping < Event
 
   def initialize(name)
     @name = name
@@ -26,5 +26,5 @@ class Reaping < Event; end
   def add_gamemaker(name)
     @gamemakers.push({name: name})
   end
-
+end
 end
