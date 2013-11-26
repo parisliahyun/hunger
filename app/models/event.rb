@@ -22,12 +22,18 @@ class Reaping < Event; end
     end
   end
 
+  def find_by_age(age)
+    people.first do |person|
+      person[:age] == age
+    end
+  end
+
   def tributes
     @tributes
   end
 
-  def add_citizens(name, gender)
-    @citizens.push({name: name, gender: gender})
+  def add_citizens(name)
+    @citizens.push({name: name})
   end
 
   def select_tribute(name)
