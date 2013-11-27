@@ -1,3 +1,3 @@
 class District < Place
-  has_many :people
+  has_many :citizens
 end 

@@ -1,43 +1,31 @@
 class Event < ActiveRecord::Base
-class Reaping < Event; end
-
-  def initialize(name)
-    @name = name
-    @citizens = []
-    @tributes = []
-    @gamemakers = []
-  end
-
-  def name
-    @name
-  end
-
-  def citizens
-    @citizens
-  end
 
   def find_by_gender(gender)
-    people.first do |person|
-      person[:gender] == gender
-    end
+    #binding.pry
+    Person.where(gender: gender)
   end
 
   def find_by_age(age)
-    people.first do |person|
-      person[:age] == age
-    end
+    Person.where(age: age)
+  end
+
+  def find_by_district(id)
+    District.where(id: id)
+  end
+
+  def select_tribute(gender, district)
+    gender = find_by_gender(gender)
+    age = find_by_age(12..18)
+    tributes = district.citizens && gender && age
+    tributes.sample
   end
 
   def tributes
     @tributes
   end
 
-  def add_citizens(name)
-    @citizens.push({name: name})
-  end
-
-  def select_tribute(name)
-    @tributes.push({name: name})
+  def add_citizens(name, age, gender, district)
+    Person.create(age: age, gender: gender, district: district, name: name, type: "Citizen")
   end
 
   def gamemakers

@@ -6,10 +6,10 @@ FactoryGirl.define do
   #   district
   # end
   factory :person do
-      type "citizens"
-      gender "f"
-      name Faker::Name.name 
-      age { (1..30).to_a.sample }
+      type    "Citizen"
+      gender  {["female","male"].sample }
+      name    {Faker::Name.name}
+      age     {(1..30).to_a.sample}
       district
    end
 end
