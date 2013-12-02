@@ -1,10 +1,5 @@
 FactoryGirl.define do
-  # factory :person do
-  #   gender      "f"
-  #   name        "Katniss Everdeen"
-  #   age "16"
-  #   district
-  # end
+
   factory :person do
       type    "Citizen"
       gender  {["female","male"].sample }
@@ -12,4 +7,5 @@ FactoryGirl.define do
       age     {(1..30).to_a.sample}
       district
    end
+
 end

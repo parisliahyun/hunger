@@ -1,4 +1,17 @@
 class Event < ActiveRecord::Base
+  class Round < Event
+    validates :game_id, :name, presence: true, uniqueness: true
+    belongs_to :game
+    has_and_belongs_to_many :tributes, :join_table => "rounds_games"
+
+      def does_not_exceed_round_limit
+        unless game && game.rounds.count <= 3
+          errors.add(:game, "Too many rounds in this game!")
+        end
+      end
+  end
+
+# for reaping
 
   def find_by_gender(gender)
     #binding.pry
@@ -28,12 +41,8 @@ class Event < ActiveRecord::Base
     Person.create(age: age, gender: gender, district: district, name: name, type: "Citizen")
   end
 
-  def gamemakers
-    @gamemakers
-  end
+  # for round
 
-  def add_gamemaker(name)
-    @gamemakers.push({name: name})
-  end
+
 
 end

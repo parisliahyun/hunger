@@ -19,22 +19,18 @@ describe Event do
   context "there are a group of citizens of mixed gender and age" do
     let(:district) { FactoryGirl.create(:district) }
     before do
-      #binding.pry
       24.times { FactoryGirl.create(:person, district: district) }
     end
     describe "#find_by_gender" do
       it "selects a number of females who are eligible for tribute" do
-      # binding.pry
         all_females = reaping.find_by_gender("female")
         expect(all_females.length).to be > 0 # some number of...
         expect(all_females.first.gender).to eq("female") # females
       end
 
       it "selects a number of males who are eligible for tribute" do
-        #binding.pry
         all_males = reaping.find_by_gender("male")
         expect(all_males.length).to be > 0 # some number of...
-        #binding.pry
         expect(all_males.first.gender).to eq("male") # males
       end
     end
@@ -52,13 +48,11 @@ describe Event do
   context "A district has citizens who could be a tribute" do
     let(:district) { FactoryGirl.create(:district) }
     before do
-      #binding.pry
       24.times { FactoryGirl.create(:person, district: district) }
     end    
 
     describe "#select_tribute" do
       it "selects a random female as tribute" do
-        # binding.pry
         katniss = reaping.select_tribute("female", district)
         expect(katniss.gender).to eq("female")
         expect(katniss.district).to eq(district)
@@ -67,46 +61,42 @@ describe Event do
     end
   end
 
+  # round
+  let!(:round) { Event.new(type: "Round", name: "1") }
+  let(:game) { FactoryGirl.create(:game) }
+
+  describe "validations" do
+      subject { round }
+
+      it { should belong_to(:game) }
+      it { should validate_presence_of(:game_id) }
+      it { should have_and_belong_to_many(:tributes) }
+      it { should ensure_inclusion_of(:name).in_range(0..4) }
+      it { should validate_presence_of(:name) }
+      it { should validate_uniqueness_of(:name).scoped_to(:game_id) }
+    end
+
+    describe "#game" do
+    before do
+      round.game = game
+    end
+
+    context "4 existing games" do
+      before do
+        4.times { |i| FactoryGirl.create(type: "Round", name: i.to_s) }
+      end
+
+    it "is not valid" do
+        expect(round).to have(1).errors_on(:game)
+      end
+    end
+
+    context "less than 4 existing games" do
+      it "is valid" do
+        expect(round).to have(0).errors_on(:game)
+      end
+    end
+  end
 end
 
-    # District.all.each do |district|
-    #  district_people = reaping.find_by_district(district)
-    #  females = reaping.find_by_gender("female")
-    #  males = reaping.find_by_gender("male")
-    #  age = reaping.find_by_age(12..18)
-
-    #  male_tribute = (district_people || males || age).sample
-
-# select a random male as tribute
-# select a random female as tribute
-
-# test each female and male tribute methods to make sure they're the right age and gender.
-
-# two tributes total test
-
-  # describe "#add_gamemaker" do
-
-  #   it "add a gamemaker" do
-  #     reaping.add_gamemaker("gamemaker 1")
-  #     expect(reaping.gamemakers.count).to eq(1)
-  #   end
-  # end
-
-
-
-  # controller reaping_controller.rb
-  #
-  # def "select_female_tribute"
-  #  reaping = Reaping.new
-  #  District.all.each do |district|
-  #    district_people = reaping.find_by_district(district)
-  #    females = reaping.find_by_gender("female")
-  #    males = reaping.find_by_gender("male")
-  #    age = reaping.find_by_age(12..18)
-  #    
-  #    male_tribute = (district_people || males || age).sample
-  #  end
-  # end
-  #
-
-
+    

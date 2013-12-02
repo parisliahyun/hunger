@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126201451) do
+ActiveRecord::Schema.define(version: 20131202032210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(version: 20131126201451) do
   end
 
   create_table "events", force: true do |t|
-    t.string "type"
-    t.string "name"
+    t.string  "type"
+    t.string  "name"
+    t.integer "game_id"
   end
 
   create_table "games", force: true do |t|
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(version: 20131126201451) do
     t.string   "gender"
     t.integer  "age"
     t.integer  "district_id"
+    t.integer  "game_id"
   end
 
   add_index "people", ["district_id"], name: "index_people_on_district_id", using: :btree
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 20131126201451) do
     t.string  "skills"
     t.integer "score"
     t.boolean "is_victor"
+    t.integer "game_id"
   end
 
   create_table "sponsors_tributes", force: true do |t|
