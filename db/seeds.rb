@@ -6,5 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Person.destroy_all
 
-# katniss = Person.create(type: "tribute", name: "katniss everdeen")
+katniss = Person.create(type: "Tribute", name: "katniss everdeen", age: 16, gender: "female")
+peeta = Person.create(type: "Tribute", name: "Peeta", age: 16, gender: "male")

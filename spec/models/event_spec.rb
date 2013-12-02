@@ -67,7 +67,6 @@ describe Event do
 
   describe "validations" do
       subject { round }
-
       it { should belong_to(:game) }
       it { should validate_presence_of(:game_id) }
       it { should have_and_belong_to_many(:tributes) }
