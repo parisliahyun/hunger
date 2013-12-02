@@ -7,6 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Person.destroy_all
+Place.destroy_all
 
-katniss = Person.create(type: "Tribute", name: "katniss everdeen", age: 16, gender: "female")
-peeta = Person.create(type: "Tribute", name: "Peeta", age: 16, gender: "male")
+district12 = Place.create(type: "District", name: "12")
+katniss = Person.create(type: "Tribute", name: "katniss everdeen", age: 16, gender: "female", game_id: 1)
+peeta = Person.create(type: "Tribute", name: "Peeta", age: 16, gender: "male", game_id: 1)
+
